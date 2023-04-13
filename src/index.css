@@ -54,5 +54,6 @@ code {
 li {
   list-style-type: decimal;
   margin: 10px;
+  width: 95%;
 }
 

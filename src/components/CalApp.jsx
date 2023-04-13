@@ -24,10 +24,11 @@ const CalApp = () => {
       const result = eval(input);
       setInput(result.toString());
 
-      setHistory([...history, { input, result }]);
+      const date = new Date();
+      setHistory([...history, { input, result, date }]);
       localStorage.setItem(
         "history",
-        JSON.stringify([...history, { input, result }])
+        JSON.stringify([...history, { input, result, date }])
       );
     } catch (error) {
       setInput("Error");
@@ -55,14 +56,18 @@ const CalApp = () => {
       {history.length > 0 && (
         <button
           onClick={handleClearHistoryClick}
-          style={{ backgroundColor: "brown", fontSize: "1rem", margin: "10px" }}
+          style={{ backgroundColor: "brown", fontSize: "1rem", margin: "10px", cursor:"pointer" }}
         >
           Clear History
         </button>
       )}
+      <h3>Recent {history.length > 1 ? "Activities" : "Activity" }</h3>
       {history.map((calculation, index) => (
         <li key={index}>
-          {calculation.input} = {calculation.result}
+          {calculation.input} = {calculation.result}{" "}
+          {new Date(calculation.date).toLocaleString("en-US", {
+            timeZone: "Africa/Lagos",
+          })}
         </li>
       ))}
     </div>
