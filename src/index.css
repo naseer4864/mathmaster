@@ -51,3 +51,8 @@ code {
   background-color: #4c64b5;
 }
 
+li {
+  list-style-type: decimal;
+  margin: 10px;
+}
+
